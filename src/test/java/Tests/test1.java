@@ -14,6 +14,7 @@ public class test1 {
 
     @Before
     public void setUp(){
+
         pageHome = new PageHome(driver);
         driver = pageHome.chormeDriverconection();
         pageHome.urlPage("https://www.fravega.com");
@@ -22,7 +23,11 @@ public class test1 {
 
     @Test
     public void testSearch(){
+        pageHome.popUp();
         pageHome.homePageSearch();
+        pageHome.pageSearch();
+        pageHome.selectListProdu();
+
     }
 
     @After
