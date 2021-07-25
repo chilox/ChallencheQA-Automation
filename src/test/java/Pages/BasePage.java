@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +31,7 @@ public class BasePage {
     public List<WebElement> findElements(By locator){
         return driver.findElements(locator);
     }
+
 
     public String getText(WebElement element){
         return element.getText();
