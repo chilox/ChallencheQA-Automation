@@ -3,6 +3,7 @@ package Pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
@@ -16,7 +17,7 @@ public class PageHome extends BasePage {
     By selectMarcaLocator = By.cssSelector("label[for=\"filterItemsamsung\"]");
     By selectAllMarcas = By.xpath("/html/body/div[1]/div[2]/div[3]/div[4]/div[2]/ul/li[1]/a/div/div");
     By listProduc = By.xpath("//section[@class=\"listingDesktopstyled__RightContainer-wzwlr8-5 cZmqHQ\"]// ul[@name=\"itemsGrid\"] /li");
-    By resultSearchProd = By.xpath("//*[@id=\"__next\"]/div/div[3]/div/div/div[1]/ul/li[1]/span");
+    By resultSearchProd = By.cssSelector("#__next > div.sc-fiKUBa.hiiBo > div.categorySlug__ListingLayout-shopping-ui__sc-1l2p1q1-2.hvCjrw > div.categorySlug__CategoryArea-shopping-ui__sc-1l2p1q1-5.igXrHE > span > span");
     By breadCrumb = By.xpath("/html/body/div[1]/div[2]/div[3]/div[2]/div/ol/li[5]/span");
 
 
@@ -50,22 +51,17 @@ public class PageHome extends BasePage {
 
     public void selectListProdu(){
         //Se crea la lista y se realiza las validaciones pertinentes
+        String Marca = "Patrick";
+        String Electrodomestico = "Heladeras";
+        List<WebElement> list = findElements(By.xpath("//*[@id=\"__next\"]/div[2]/div[3]/div[5]/ul/li"));
+        System.out.println(list.size());
 
-        List<WebElement> Lis = findElements(By.xpath("//section[@class=\"listingDesktopstyled__RightContainer-wzwlr8-5 cZmqHQ\"]// a[@rel=\"bookmark\"]"));
-            WebElement total;
-        for (int i=0; i<Lis.size(); ++i) {
-            if (Lis.get(i).getText().contains("Patrick")) {
-                total = Lis.get(i);
-                System.out.println("El resultado es Correcto");
-                Assert.assertEquals(Lis.size(), getText(resultSearchProd));
-                System.out.println("El valor es correspondiente");
-                Assert.assertEquals("Heladeras", getText(breadCrumb));
-                System.out.println("Resultado correcto");
-            } else {
-                System.out.println("El proceso de Validación es fallido");
-
-            }
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertTrue(list.get(i).getText().contains(Marca));
+            Assert.assertEquals(list.size(), getText(resultSearchProd));
+            Assert.assertEquals(Electrodomestico, getText(breadCrumb));
 
         }
+
     }
 }
