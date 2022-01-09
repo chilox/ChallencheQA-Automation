@@ -18,7 +18,7 @@ public class BasePage {
     }
 
     public WebDriver chormeDriverconection() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/admin/Documents/GitRepo/ChallencheQA-Automation/src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         return driver;
@@ -68,6 +68,9 @@ public class BasePage {
     public void urlPage(String url){
         driver.get(url);
     }
+
+
+
 
 
 

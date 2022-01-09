@@ -1,10 +1,13 @@
 package Tests;
 
-import Pages.BasePage;
+
 import Pages.PageHome;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +15,7 @@ public class TestBase  {
     protected PageHome pageHome;
     protected WebDriver driver;
 
-    @Before
+    @BeforeTest
     public void setUp(){
 
         pageHome = new PageHome(driver);
@@ -21,10 +24,10 @@ public class TestBase  {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterTest
     public void tearDown(){
         driver.quit();
-    }
+   }
 
 
 }
