@@ -17,28 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class PageHome extends BasePage {
-
+public class SearchPage extends BasePage {
     By popUpSearch = By.name("postalNumber");
     By searchBoxLocator = By.xpath("//*[@id=\"__next\"]/div/header/div[2]/form/fieldset/div[1]/input");
-    By buttonApply = By.id("apply");
-    By selectMarcaLocator = By.cssSelector("label[for=\"filterItemsamsung\"]");
-    By listProduc = By.xpath("//section[@class=\"listingDesktopstyled__RightContainer-wzwlr8-5 cZmqHQ\"]// ul[@name=\"itemsGrid\"] /li");
-    By buttonNext = By.xpath("//*[@id=\"__next\"]/div[2]/div[3]/div[6]/ul/li[4]");
-    By selectAllMarcas = By.xpath("/html/body/div[1]/div[2]/div[3]/div[4]/div[2]/ul/li[1]/a/div/div");
-    By resultSearchProd = By.cssSelector("#__next > div.sc-fiKUBa.hiiBo > div.categorySlug__ListingLayout-shopping-ui__sc-1l2p1q1-2.hvCjrw > div.categorySlug__CategoryArea-shopping-ui__sc-1l2p1q1-5.igXrHE > span > span");
     By breadCrumb = By.xpath("/html/body/div[1]/div[2]/div[3]/div[2]/div/ol/li[5]/span");
     By produTitle = By.xpath("h1[data-test-id=\"result-title\"]");
+    By resultSearchProd = By.cssSelector("#__next > div.sc-fiKUBa.hiiBo > div.categorySlug__ListingLayout-shopping-ui__sc-1l2p1q1-2.hvCjrw > div.categorySlug__CategoryArea-shopping-ui__sc-1l2p1q1-5.igXrHE > span > span");
+    By buttonNext = By.xpath("//*[@id=\"__next\"]/div[2]/div[3]/div[6]/ul/li[4]");
+    By selectAllMarcas = By.xpath("/html/body/div[1]/div[2]/div[3]/div[4]/div[2]/ul/li[1]/a/div/div");
     By linkProduFilter = By.cssSelector("#__next > div.sc-fiKUBa.hiiBo > div.categorySlug__ListingLayout-shopping-ui__sc-1l2p1q1-2.hvCjrw > div.categorySlug__Desktop-shopping-ui__sc-1l2p1q1-1.eXwRKq > div:nth-child(2) > ul > li:nth-child(1) > h4 > a");
 
 
-
-
-
-    public PageHome(WebDriver driver) {
+    public SearchPage(WebDriver driver) {
         super(driver);
     }
-
     public void popUp(){
         //Se realiza para seleccionar el codigo Postal
         type("1425", popUpSearch);
@@ -53,15 +45,22 @@ public class PageHome extends BasePage {
         submit(searchBoxLocator);
     }
 
+
+
     public void pageSearch (){
         //Se realiza la busqueda del Heladeras por Marca
-            click(linkProduFilter);
-            click(selectAllMarcas);
+        click(linkProduFilter);
+        click(selectAllMarcas);
 
+    }
+
+    public boolean isDisplayed(){
+        return this.isDisplayed(buttonNext);
     }
 
     public void selectListProdu() {
         //Se crea la lista y se realiza las validaciones pertinentes
+
         String Marca = "Patrick";
         String Electrodomestico = "Heladeras";
 
@@ -85,6 +84,4 @@ public class PageHome extends BasePage {
         Assert.assertEquals(b, getText(resultSearchProd));
 
     }
-
-
 }
